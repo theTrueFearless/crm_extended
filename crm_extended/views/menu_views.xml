@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="crm_social_network_menu" name="Social Networks" parent="crm.crm_menu_config" sequence="11"
+                  action="crm_extended.crm_social_network_action"/>
+    </data>
+</odoo>
+

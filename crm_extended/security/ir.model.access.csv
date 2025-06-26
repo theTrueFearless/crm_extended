@@ -1,1 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_social_network,access.social.network,model_crm_extended_social_network,base.group_user,1,1,1,1
+access_social_network_profile,access.social.network.profile,model_crm_extended_social_network_profile,base.group_user,1,1,1,1
