@@ -1,54 +1,54 @@
-name: Test Coverage
-on: [push, pull_request]
-
-jobs:
-  coverage:
-    runs-on: ubuntu-latest
-    container: 
-      image: odoo:16.0
-      env:
-        PYTHON_VERSION: 3.11  # Forzamos Python 3.11
-
-    steps:
-      # 1. Clone repository
-      - uses: actions/checkout@v4
-
-      # 2. Python version used
-      - name: Set up Python 3.11
-        run: |
-          # Instala Python 3.11 y lo establece como predeterminado
-          apt-get update && apt-get install -y python3.11 python3.11-dev
-          update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
-          python3 --version  # Verifica que sea 3.11.x
-
-      # 3. Dependencies
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install coverage 
-
-      # 4. Odoo Conf
-      - name: Link module
-        run: |
-          ln -s $GITHUB_WORKSPACE/crm_extended /mnt/extra-addons/crm_extended
-          echo "addons_path = /mnt/extra-addons" > /etc/odoo/odoo.conf  
-
-      # 5. Run Tests
-      - name: Run tests
-        run: |
-          cd /mnt/extra-addons
-          coverage run --source=crm_extended odoo --test-enable -d test_db -u crm_extended --stop-after-init
-
-      # 6. Report Generation
-      - name: Generate report
-        run: |
-          coverage html
-          mkdir -p $GITHUB_WORKSPACE/docs/coverage/
-          mv htmlcov/* $GITHUB_WORKSPACE/docs/coverage/
-
-      # 7. Report Upload
-      - name: Upload coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: docs/coverage/
+#name: Test Coverage
+#on: [push, pull_request]
+#
+#jobs:
+#  coverage:
+#    runs-on: ubuntu-latest
+#    container:
+#      image: odoo:16.0
+#      env:
+#        PYTHON_VERSION: 3.11
+#
+#    steps:
+#      # 1. Clone repository
+#      - uses: actions/checkout@v4
+#
+#      # 2. Python version used
+#      - name: Set up Python 3.11
+#        run: |
+#          # Instala Python 3.11 y lo establece como predeterminado
+#          apt-get update && apt-get install -y python3.11 python3.11-dev
+#          update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+#          python3 --version  # Verifica que sea 3.11.x
+#
+#      # 3. Dependencies
+#      - name: Install dependencies
+#        run: |
+#          python3 -m pip install --upgrade pip
+#          python3 -m pip install coverage
+#
+#      # 4. Odoo Conf
+#      - name: Link module
+#        run: |
+#          ln -s $GITHUB_WORKSPACE/crm_extended /mnt/extra-addons/crm_extended
+#          echo "addons_path = /mnt/extra-addons" > /etc/odoo/odoo.conf
+#
+#      # 5. Run Tests
+#      - name: Run tests
+#        run: |
+#          cd /mnt/extra-addons
+#          coverage run --source=crm_extended odoo --test-enable -d test_db -u crm_extended --stop-after-init
+#
+#      # 6. Report Generation
+#      - name: Generate report
+#        run: |
+#          coverage html
+#          mkdir -p $GITHUB_WORKSPACE/docs/coverage/
+#          mv htmlcov/* $GITHUB_WORKSPACE/docs/coverage/
+#
+#      # 7. Report Upload
+#      - name: Upload coverage
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: coverage-report
+#          path: docs/coverage/

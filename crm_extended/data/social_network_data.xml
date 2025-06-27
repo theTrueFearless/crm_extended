@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Facebook -->
+        <record id="data_social_network_facebook" model="crm_extended.social.network">
+            <field name="name">Facebook</field>
+            <field name="icon" type="base64" file="crm_extended/static/src/icons/facebook.svg"/>
+        </record>
+
+        <!-- LinkedIn -->
+        <record id="data_social_network_linkedin" model="crm_extended.social.network">
+            <field name="name">LinkedIn</field>
+            <field name="icon" type="base64" file="crm_extended/static/src/icons/linkedin.svg"/>
+        </record>
+
+        <!-- Twitter -->
+        <record id="data_social_network_twitter" model="crm_extended.social.network">
+            <field name="name">Twitter</field>
+            <field name="icon" type="base64" file="crm_extended/static/src/icons/twitterx.svg"/>
+        </record>
+
+    </data>
+</odoo>
