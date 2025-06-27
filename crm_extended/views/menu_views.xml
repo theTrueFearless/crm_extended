@@ -4,6 +4,13 @@
 
         <menuitem id="crm_social_network_menu" name="Social Networks" parent="crm.crm_menu_config" sequence="11"
                   action="crm_extended.crm_social_network_action"/>
+
+        <record id="customers_page_menu" model="website.menu">
+            <field name="name">Customers Promotion</field>
+            <field name="url">/customers</field>
+            <field name="sequence" type="int">50</field>
+            <field name="parent_id" ref="website.main_menu"/>
+        </record>
     </data>
 </odoo>
 

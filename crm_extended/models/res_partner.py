@@ -7,7 +7,8 @@ class ResPartner(models.Model):
 
     social_network_profile_ids = fields.One2many('crm_extended.social.network.profile', 'partner_id',
                                                  string='Social Profiles')
-    completed_profile = fields.Boolean(compute='_compute_profile_social_complete', search='_search_completed_profile')
+    completed_profile = fields.Boolean(compute='_compute_profile_social_complete', search='_search_completed_profile',
+                                       string="Profile Complete")
 
     @api.depends('social_network_profile_ids.network_id')
     def _compute_profile_social_complete(self):

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="customer_promotion_template" name="Customer Profiles">
+            <t t-call="website.layout">
+                <style>
+                    .customer-card {
+                    transition: all 0.3s ease;
+                    height: 100%;
+                    }
+                    .customer-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                    }
+                    .social-icons-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 10px;
+                    margin-top: 15px;
+                    }
+                    .social-icon {
+                    width: 32px;
+                    height: 32px;
+                    object-fit: contain;
+                    transition: all 0.2s ease;
+                    }
+                    .social-icon:hover {
+                    transform: scale(1.1);
+                    }
+                    .profile-image {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    }
+                </style>
+
+                <div class="container mt-4 mb-5">
+
+                    <div class="row mb-4">
+                        <div class="col-12 text-center">
+                            <h1 class="display-4">Our Customers</h1>
+                            <p class="lead text-muted">Connect with our professional network</p>
+                        </div>
+                        <div class="col-md-6 offset-md-3">
+                            <form method="get" class="form-inline justify-content-center">
+                                <div class="input-group w-100 shadow-sm">
+                                    <input type="text"
+                                           name="search"
+                                           class="form-control"
+                                           placeholder="Search by name or social network"
+                                           t-att-value="search"/>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-search mr-2"></i>
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <t t-foreach="customers" t-as="partner">
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="customer-card card">
+                                    <div class="card-body text-center">
+
+                                        <div class="mb-3">
+                                            <t t-if="partner.image_128">
+                                                <img t-attf-src="/web/image/res.partner/#{partner.id}/image_128"
+                                                     class="profile-image rounded-circle"/>
+                                            </t>
+                                            <t t-else="">
+                                                <div class="profile-image rounded-circle bg-light d-inline-flex align-items-center justify-content-center">
+                                                    <i class="fa fa-user fa-3x text-muted"></i>
+                                                </div>
+                                            </t>
+                                        </div>
+
+                                        <h3 class="h5 font-weight-bold">
+                                            <t t-esc="partner.name"/>
+                                        </h3>
+
+                                        <t t-if="partner.function">
+                                            <p class="text-muted mb-3">
+                                                <i class="fa fa-briefcase mr-2"></i>
+                                                <t t-esc="partner.function"/>
+                                            </p>
+                                        </t>
+
+                                        <t t-if="partner.email">
+                                            <p class="text-muted">
+                                                <i class="fa fa-envelope mr-2"></i>
+                                                <t t-esc="partner.email"/>
+                                            </p>
+                                        </t>
+
+                                        <t t-if="partner.social_network_profile_ids">
+                                            <div class="mt-3">
+                                                <h6 class="text-muted mb-2">Social Networks</h6>
+                                                <div class="social-icons-container">
+                                                    <t t-foreach="partner.social_network_profile_ids" t-as="profile">
+                                                        <a t-att-href="profile.url"
+                                                           target="_blank"
+                                                           rel="noopener noreferrer"
+                                                           class="social-icon-link">
+                                                            <t t-if="profile.icon">
+                                                                <img t-attf-src="/web/image/crm_extended.social.network/#{profile.network_id.id}/icon"
+                                                                     t-att-title="profile.network_id.name"
+                                                                     class="social-icon"/>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <span class="badge badge-light border">
+                                                                    <t t-esc="profile.network_id.name"/>
+                                                                </span>
+                                                            </t>
+                                                        </a>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

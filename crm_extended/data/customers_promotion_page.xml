@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="crm_extended.customers_page" model="website.page">
+            <field name="name">Customers</field>
+            <field name="url">/customers</field>
+            <field name="website_id" ref="website_default"/>
+            <field name="view_id" ref="crm_extended.customer_promotion_templates"/>
+        </record>
+    </data>
+</odoo>

@@ -9,12 +9,16 @@
     'license': 'LGPL-3',
     'depends': [
         'crm',
-        #'website'
+        'website'
         ],
     'data': [
         # security
         'security/ir.model.access.csv',
+        # data
+        'data/website_setup.xml',
+        # 'data/customers_promotion_page.xml',
         # views
+        'views/customer_promotion_templates.xml',
         'views/crm_extended_social_network_views.xml',
         'views/crm_extended_social_network_profile_views.xml',
         'views/res_partner_views.xml',
