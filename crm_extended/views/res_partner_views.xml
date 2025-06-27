@@ -47,5 +47,24 @@
                 </xpath>
             </field>
         </record>
+
+        <record id="view_res_partner_filter_inherit_social" model="ir.ui.view">
+            <field name="name">res.partner.search.inherit.social</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//separator[last()]" position="after">
+                    <separator/>
+
+                    <filter string="Profile Complete"
+                            name="profile_complete"
+                            domain="[('completed_profile','=',True)]"/>
+
+                    <filter string="Profile Incomplete"
+                            name="profile_incomplete"
+                            domain="[('completed_profile','=',False)]"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>
