@@ -18,7 +18,7 @@
             <field name="model">crm_extended.social.network.profile</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="icon" widget="image"/>
+                    <field name="icon" widget="image" string="Platform"/>
                     <field name="url"/>
                 </tree>
             </field>
