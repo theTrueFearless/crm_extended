@@ -1,0 +1,9 @@
+# coverage files
+htmlcov/
+.coverage
+*.coverage
+
+# Odoo files
+*.log
+*.pid
+/crm_extended/docs/coverage/
